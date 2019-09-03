@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>留言板</title>
+<link rel="stylesheet" href="./lib/bootstrap-3.3.7.css">
+<link rel="stylesheet"  type="text/css" href="./css/header.css">
+<script src="./js/jquery-3.4.1.js"></script>
+<script src="./lib/vue-2.4.0.js"></script>
+<script src="./js/index.js"></script>
+<style>
+.space {
+  height: 80px;
+  width: 1140px;
+   margin: 0 auto;
+   margin-bottom: 160px;
+   margin-left: 120px;
+   text-align:center;
+   font-size: 30px;
+   line-height: 80px;;
+ }
+</style>
+</head>
+<body>
+  <div id="app">
+     <myheader></myheader>
+     <div class="space">留言板</div>
+    <cmt-box @func="loadComments"></cmt-box>
+    <ul class="list-group">
+      <li class="list-group-item" v-for="item in list" :key="item.id" >
+        <span class="badge">评论人：{{ item.user }}</span>
+        {{ item.content }}
+      </li>
+    </ul>
+
+
+  </div>
+  
+  <template id="header" >
+      <div class="header_p">
+          <div class="header">
+          <div class="h_left"><img src="http://www.mxxia.com/wp-content/uploads/2019/06/logo.png"></div>
+          <ul class="h_middle">
+              <li><a href="index.html">首页</a></li>
+              <li class="webproject"><a href="#">前端学习</a>
+                  <ul >
+                      <li>HTML</li>
+                      <li>CSS</li>
+                      <li>javascript</li>
+                      <li>CSS3+HTML5</li>
+                      <li>Vue</li>
+                      <li>canvas</li>
+                  </ul>
+              </li>
+              <li><a href="./myself.html">个人简历</a></li>
+              <li><a href="./message.html" >留言板</a</li>
+          </ul>
+          <div class="h_right">
+          <a href="#">登录</a>
+          <span>/</span>
+          <a href="#">注册</a>
+          </div>
+      </div>
+      </div> 
+      
+  </template>
+
+  <template id="tmpl">
+    <div>
+
+      <div class="form-group">
+        <label>评论人：</label>
+        <input type="text" class="form-control" v-model="user">
+      </div>
+
+      <div class="form-group">
+        <label>评论内容：</label>
+        <textarea class="form-control" v-model="content" ></textarea>
+      </div>
+
+      <div class="form-group">
+        <input type="button" value="发表评论" class="btn btn-primary" @click="postComment">
+      </div>
+
+    </div>
+  </template>
+  <script>
+     var header={
+        template:'#header',  
+    }
+var vm = new Vue({
+        el:"#app",
+        data:{
+            list: [
+          { id: Date.now(), user: '李白', content: '天生我材必有用' },
+          { id: Date.now(), user: '江小白', content: '劝君更尽一杯酒' },
+          { id: Date.now(), user: '小马', content: '我姓马， 风吹草低见牛羊的马' }
+        ]
+        },
+        methods: {
+        loadComments() { // 从本地的 localStorage 中，加载评论列表
+          var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+          this.list = list
+           }
+        },
+        created(){
+         this.loadComments()
+       },
+        components:{
+            cmtBox:{
+                template:"#tmpl",
+                data() {
+                     return {
+                    user: '',
+                    content: ''
+                    }
+                },
+                methods:{
+                    postComment(){
+                        var comment = { id: Date.now(), user: this.user, content: this.content }
+                        var list = JSON.parse(localStorage.getItem('cmts') || '[]')
+                        console.log(list)
+                        list.unshift(comment)
+                        localStorage.setItem('cmts', JSON.stringify(list))
+                        this.user = this.content = ''
+                        this.$emit('func')
+                    },
+                    
+                },
+                
+            },
+            myheader:header
+        },
+    })
+         
+  </script>
+</body>
+
+</html>

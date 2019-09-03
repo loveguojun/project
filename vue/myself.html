@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>个人介绍</title>
+    <link rel="stylesheet" href="./css/myself.css">
+    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/header.css">
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script type="text/javascript" src="./js/snowfall.jquery.js"></script>
+</head>
+<body>
+    <div id="app">
+         <myheader></myheader>
+    </div>
+    <div class="resume-effect center">
+        <p>我</p>
+        <p>的</p>
+        <p>简</p>
+        <p>历</p>
+    </div>
+    <div class="resume">
+        <div class="myintroduction center">
+            <table   cellspacing="0" cellspacing="0"class='center'>
+                <caption><span class="h_span">|</span>个人信息</caption>
+                <tr>
+                    <td>姓名：陆珅</td>
+                    <td>年龄25</td>
+                </tr>
+                <tr>
+                        <td>毕业学校：天津师范大学</td>
+                        <td>学历：本科</td>
+                </tr>
+                <tr>
+                        <td>专业：计算机与信息工程</td>
+                        <td>英语等级：CET-4</td>
+                </tr>
+                <tr>
+                        <td>手机:15669902169</td>
+                        <td>邮箱：1431447727@qq.com</td>
+                </tr>
+            </table>
+        </div>
+        <div class="self-evalution center">
+            <h2><span class="h_span">|</span>自我评价</h2>
+            <ol>
+                <li>热爱前端技术，能够快速熟悉新技术，有良好的代码书写规范</li>
+                <li>能够快速的适应各种工作环境，具有良好的分析能力，自学能力，适应能力</li>
+                <li>做事积极认真负责</li>
+                <li>具有良好的沟通表达能力，有较强的学习能力和探索精神，责任心强。</li>
+                <li>乐观开朗，但拥有一个有趣的灵魂，能带给人欢乐。</li>
+            </ol>
+            <b>以下附上个人一首小诗：</b>
+            <h4>林中绪</h4>
+            <p>朝去暮来无留意，</p>
+            <p>林动风起鸟不惊。</p>
+            <p>愿作池中三点墨，</p>
+            <p>随波搅乱一片清。</p>
+        </div>
+        <div class="myskill center">
+            <h2><span class="h_span">|</span>我的技能</h2>
+            <ol>
+                <li>精通HTML+CSS网页布局与样式。</li>
+                <li>熟练掌握javascript、jquery。</li>
+                <li>熟练掌握HTML5与CSS3.0</li>
+                <li>熟练掌握flex布局样式。</li>
+                <li>熟悉微信小程序开发工具的使用并进行页面的布局，熟悉wxml,wxss语法并根据api进行小程序页面设计</li>
+                <li>熟练掌握vue框架、MVVM开发模式。</li>
+                <li>熟悉react基本语法</li>
+                <li>熟悉php编程语言(有系统地学习使用过tp3系列)</li>
+                <li>熟悉es6语法</li>
+                <li>熟悉微信小程序开发工具的使用并进行页面的布局，熟悉wxml,wxss语法</li>
+                <li>and more...</li>
+            </ol>
+        </div>
+
+        <!-- <div class="project-works center">
+                <h2 ><span class="
+                    h_span">|</span>个人项目</h2>
+            <div class="projects">
+                <a href="#" class="projects-name">京东首页<span>--点击查看</span></a>
+                <p class="projects-skills">
+                    DIV+CSS+jquery+swipper
+                </p>
+            </div>    
+        </div> -->
+        <div class="project-works center">
+            <h2 ><span class="
+                h_span">|</span>个人项目</h2>
+           <div id="projects">
+               <div class="projects" v-for="item in projectWorks" :key="item.id"> 
+                    <a :href="item.src" class="projects-name">{{item.projectName}}<span>--点击查看</span></a>
+                    <p class="projects-skills">
+                        {{item.projectSkill}}
+                    </p>
+                </div>
+           </div>     
+            
+    </div>
+
+
+        <div class="training-experience center">
+            <h2><span class="h_span">|</span>培训经历</h2>
+            <p class="trainning-time">2016/06——2016/12</p>
+            <p class="trainning-company">天津市天软时代科技有限公司</p>
+            <p class="trainning-intro">学习网页制作，主要学习内容包括php(thinkphp 3版本)、html、css、javascript，自学jquery期间独立完成制作过淘宝商城页面设计(所有商品页面数据从数据库获取，涉及登录注册，分页，数据库设计，ajax获取数据等)（mysql+php）</p>
+        </div>
+        <div class="work-experience center">
+                <h2><span class="h_span">|</span>工作经验</h2>
+                <p class="work-time">2018/06——至今</p>
+                <p class="work-company">杭州启博科技有限公司</p>
+                <p class="work-intro">担任渠道助理一职，主要负责代理商小程序使用培训（线上线下）和微信小程序问题处理，小程序bug测试，参与需求讨论，对小程序手机端和网页后台页面优化提出建议以提高用户体验。
+                    <p class="work-study">当然这都不是重点！！！重点是从去年十一月份开始，便投入到前端技能技术的拾起和深造当中，在繁忙的工作当中，我每天都坚持抽出2-3小时进行学习，无论是看视频，查百度，看书籍，只要对提升
+                        自己有用处，我便不遗余力。在这些逝去的岁月中，我学到了很多，无论是html，css还是javascript,jquery,canvas又或者是vue，react，nodejs,微信小程序开发，移动端页面设计，均有去学习。在
+                        下一份工作当中，我希望在强化现有技能的同时，能更加深入地学习新的技术如：webGL,three.js等等，努力成为"全端"开发者。
+                    </p>
+                </p>
+        </div>
+    </div>
+    <template id="header" >
+            <div class="header_p">
+                <div class="header">
+                <div class="h_left"><img src="http://www.mxxia.com/wp-content/uploads/2019/06/logo.png"></div>
+                <ul class="h_middle">
+                    <li><a href="index.html">首页</a></li>
+                    <li class="webproject"><a href="#">前端学习</a>
+                        <ul >
+                            <li>HTML</li>
+                            <li>CSS</li>
+                            <li>javascript</li>
+                            <li>CSS3+HTML5</li>
+                            <li>Vue</li>
+                            <li>canvas</li>
+                        </ul>
+                    </li>
+                    <li><a href="./myself.html">个人简历</a></li>
+                    <li><a href="./message.html" >留言板</a</li>
+                </ul>
+                <div class="h_right">
+                <a href="#">登录</a>
+                <span>/</span>
+                <a href="#">注册</a>
+                </div>
+            </div>
+            </div> 
+            
+    </template>
+<script >
+    var header={
+        template:'#header',  
+    }
+    var vm= new Vue({
+    el:"#app",
+    components:{
+        myheader:header,
+    }
+
+
+    })
+    var vm2=new Vue({
+        el:"#projects",
+        data:{
+            projectWorks:[
+                {projectName:'京东首页',projectSkill:' DIV+CSS+jquery+swipper',src:'../jd/index.html'},
+                {projectName:'个人博客',projectSkill:' Vue+jquery+css3+HTML5+swipper',src:'./index.html'},
+                {projectName:'梅兰商城',projectSkill:' Div+css',src:'../meiBuy/index.html'},
+                {projectName:'个人微信小程序',projectSkill:' Wxml+Wxss',src:'#'},
+                {projectName:'学成在线',projectSkill:' DIV+CSS+CSS3',src:'../学成在线/index.html'},
+            ]
+        },
+
+    })
+
+    $('.resume').snowfall({image :"./images/snowflake.png",flakeCount : 80, maxSpeed : 8,minSpeed:2, maxSize : 40,minSize:5});
+</script>
+</body>
+</html>

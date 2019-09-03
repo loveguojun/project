@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" type="text/css" href="./css/index.css">
+    <link rel="stylesheet"  type="text/css" href="./css/header.css">
+    <link rel="stylesheet" type="text/css"  href="./css/left.css">
+    <link rel="stylesheet" type="text/css"  href="./css/right.css">
+    <link rel="stylesheet" type="text/css" href="swiper/dist/css/swiper.min.css">
+    <script src="./js/jquery-3.4.1.js"></script>
+    <script src="./js/index.js"></script>
+    <script src="./node_modules/vue/dist/vue.min.js"></script>
+    <script src="./lib/vue-router-3.0.1.js"></script>
+    
+    <script type="text/javascript" src="swiper/dist/js/swiper.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+</head>
+<body>
+    <div id="app" >
+            <router-view ></router-view>
+            <router-view name="banner"></router-view>
+            <div class="content">
+                    <router-view name="message" v-if="flag=='message'"></router-view>   
+                    <router-view name="left" v-if="flag"></router-view>
+                    <router-view name="right" v-if="flag"></router-view>
+            </div>
+
+    </div>  
+     
+<template id="header" >
+    <div class="header_p">
+        <div class="header">
+        <div class="h_left"><img src="http://www.mxxia.com/wp-content/uploads/2019/06/logo.png"></div>
+        <ul class="h_middle">
+            <li><a href="index.html">首页</a></li>
+            <li class="webproject"><a href="#">前端学习</a>
+                <ul >
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>javascript</li>
+                    <li>CSS3+HTML5</li>
+                    <li>Vue</li>
+                    <li>canvas</li>
+                </ul>
+            </li>
+            <li><a href="./myself.html">个人简历</a></li>
+            <li><a href="./message.html" >留言板</a</li>
+        </ul>
+        <div class="h_right">
+        <a href="#">登录</a>
+        <span>/</span>
+        <a href="#">注册</a>
+        </div>
+    </div>
+    </div> 
+    
+</template>
+<template id="banner">
+        <div class="swiper-container">
+                <div class="swiper-wrapper">
+                  <div class="swiper-slide"><a href="#"><img src="https://www.weiyiqi.net/skin/weiyiqi/images/lyb.jpg"></a></div>
+                  <div class="swiper-slide"><a href="#"><img src="https://www.weiyiqi.net/skin/weiyiqi/images/qdfx.jpg"></a></div>
+                  <div class="swiper-slide"><a href="#"><img src="https://www.weiyiqi.net/skin/weiyiqi/images/jsjc.jpg"></a></div>
+                  <div class="swiper-slide"><a href="#"><img src="https://www.weiyiqi.net/skin/weiyiqi/images/rjsc.jpg"></a></div>
+                </div>
+                <div class="swiper-pagination"></div>
+         </div>   
+</template>
+<template id="left" >
+    <div class="left">
+        <div class="article" v-for="(item, i) in article" :key="item.id">
+            <div class="art_top">
+                <div class="art_top_l">
+                        <img :src="item.src">
+                </div>
+                <div class="art_top_r">
+                    <h3>{{item.title}}</h3>
+                    <p>{{item.content}}</p>
+                </div>
+            </div>
+            <div class="art_bottom">
+               <ul>
+                   <li>发布时间：{{item.time}}</li>
+                   <li>浏览：{{item.view}}</li>
+                   <li>评论：{{item.comments}}</li>
+                   <li>点赞：{{item.agree}}</li>
+                   <li class="read"><a href="#">阅读全文></a></li>
+               </ul>
+            </div>
+        </div>
+    </div>
+</template>
+<template id="right" >
+    <div class="right">
+        <div class="right_recommend">
+            <h2><span>|</span>热门推荐</h2>
+            <ul>
+                <li v-for='item in recommend' :key="item.id"><a href="">{{item.desc}}</a></li>
+              
+            </ul>
+        </div>   
+        <div class="right_recommend">
+                <h2><span>|</span>热门文章</h2>
+                <ul>
+                    <li v-for='item in hotarticle' :key="item.id"><a href="">{{item.desc}}</a></li>
+                  
+                </ul>
+        </div>  
+        <div class="right_hottab">
+            <h2>热门标签</h2>
+            <ul>
+                <li v-for='(item,key) in hottab' :key=item.id>{{item.name}}<a href="#"></a></li>
+            </ul>
+        </div>      
+    </div>
+</template>
+<template id="message">
+    <div>留言板</div>
+</template>
+<script>
+     var header={
+        template:'#header',  
+    }
+    var banner={
+        template:'#banner',  
+    }
+    var left={
+        template:'#left',  
+        data(){
+            return{
+            article:[
+        {
+            "id":1,
+            "title":"请说出三种减少页面加载时间的方法？",
+            "content":"created:html加载完成之前，执行。执行顺序：父组件-子组件 mounted:html加载完成后执行。执行顺序：子组件-父组件 methods：事件方法执行 watch：watch是去监听一个值的……",
+            "time":"2019-04-02",
+            "comments":25,
+            "view":152,
+            "agree":300,
+            "src":"http://www.tianshan277.com/wp-content/uploads/2018/05/QQ图片20180507140830.jpg"
+        },
+        {
+            "id":2,
+            "title":"从输入url到显示页面，都经历了什么",
+            "content":"1.在浏览器的地址栏输入url地址， 2.浏览器会在浏览器缓存，系统缓存，路由缓存里查看，如果有数据就显示在页面上，如果没有，就继续第三步。 3.在发起http请求前，需要域名……",
+            "time":"2019-07-12",
+            "comments":225,
+            "view":1532,
+            "agree":3200,
+            "src":"http://www.tianshan277.com/wp-content/themes/Kratos/images/default.jpg"
+        },
+        {
+            "id":3,
+            "title":" jQuery使用contains过滤器实现精确匹配的方法",
+            "content":":contains 选择器选取包含指定字符串的元素。 该字符串可以是直接包含在元素中的文本，或者被包含于子元素中。 经常与其他元素/选择器一起使用，来选择指定的组中包含指定文本的……",
+            "time":"2019-07-22",
+            "comments":230,
+            "view":1602,
+            "agree":3850,
+            "src":"http://www.tianshan277.com/wp-content/themes/Kratos/images/default.jpg"
+        },
+        {
+            "id":4,
+            "title":" HTML中disabled和readonly的区别",
+            "content":":disabled与readonly共同点：都使用户不能修改表单中的内容 但是二者还是有着一些区别的： 1、Readonly只针对input(text/password)和textarea有效，而disabled对于所有的…",
+            "time":"2019-08-22",
+            "comments":280,
+            "view":1692,
+            "agree":4650,
+            "src":"http://www.tianshan277.com/wp-content/themes/Kratos/images/default.jpg"
+        }
+
+    ]
+            }
+        }
+    }
+    var right={
+        template:'#right', 
+        data(){
+            return{
+                recommend:[
+                    {'id':0,'desc':'招有想法的程序员？选我就对了！'},
+                    {'id':1,'desc':'前端程序员需要知道的7种新型的CSS长度单位'},
+                    {'id':2,'desc':'微信如何查看页面源码？'},
+                    {'id':3,'desc':'3500 公里，一个人的岁末旅行'},
+                    {'id':4,'desc':'Git使用命令大合集'},
+                    {'id':5,'desc':'新手玩CSS中的一些黑科技'},
+                    {'id':6,'desc':'sublime  text3 添加vue模板'},
+                    {'id':7,'desc':'纯div+css绘制的iphone7模型和 常用App图标'},
+                    {'id':8,'desc':'脱单必备！男人这样发朋友圈，妹子才会心动'},
+                ],
+                hotarticle:[
+                    {'id':0,'desc':'招有想法的程序员？选我就对了！'},
+                    {'id':1,'desc':'Web前端工程师的强者之路'},
+                    {'id':2,'desc':'HTML5的hidden属性'},
+                    {'id':3,'desc':'WEB前端优化（前端攻城狮需要了解的页面访问速度优化方案）'},
+                    {'id':4,'desc':'锤子坚果Pro手机 2017春季发布会视频全程回顾'},
+                    {'id':5,'desc':'iTyped: 仿文字输入效果 纯 JS 仅 2KB 大小'},
+                    {'id':6,'desc':'sublime  text3 添加vue模板'},
+                    {'id':7,'desc':'纯div+css绘制的iphone7模型和 常用App图标'},
+                    {'id':8,'desc':'全新的Windows/Mac装机必备软件大合集专题页上线'},
+                ],
+                hottab:[
+                    {'name':'HTML'},
+                    {'name':'css'},
+                    {'name':'css3'},
+                    {'name':'html5'},
+                    {'name':'javascript'},
+                    {'name':'jQuery'},
+                    {'name':'vue'},
+                    {'name':'bootstrap'},
+                    {'name':'canvas'},
+                    {'name':'node.js'}
+
+                ]
+            }
+        } 
+    } 
+ 
+    var routerObj=new VueRouter({
+    routes:[
+        {path:'/',
+            components:{
+                default:header,
+                left:left,
+                right:right,
+                banner:banner,
+                message:message
+            }
+        }
+    ],
+       linkActiveClass:'myActive'
+
+    })
+    var vm = new Vue({
+        el:"#app",
+        data:{
+            flag:'true'
+        },
+        methods:{
+         
+        },
+        created(){
+            // axios.get('http://localhost/article.json')
+            // .then(function (response) {
+            //  console.log(response.data.article);
+            //  })
+            // .catch(function (error) {
+            //     console.log(error);
+            // });
+        },
+        components:{
+            header:"#header",
+            left:"#left",
+            right:"#right",
+            banner:"#banner"
+        },
+        router:routerObj,
+        
+    })
+   
+</script>
+<script type="text/javascript" src="./js/banner.js"></script>
+</body>
+</html>

@@ -1,0 +1,256 @@
+body {
+    background-color: #bad2db;
+}
+.resume-effect {
+    height: 60px;
+    padding: 40px 0;
+    position: relative;
+}
+.resume-effect p {
+    position: absolute;
+    font-size: 30px;
+    line-height: 60px;
+    color: rgba(229, 37, 236, 0.911);
+}
+.resume-effect p:nth-child(1) {
+    left: 200px;
+    animation: resumeEffect1 2s ease 3s ;
+}
+.resume-effect p:nth-child(2) {
+    left: 400px;
+    animation: resumeEffect2 2s ease 3s 2 alternate-reverse;
+}
+.resume-effect p:nth-child(3) {
+    left: 600px;
+    animation: resumeEffect3 3s ease 3s 2 alternate;
+}
+.resume-effect p:nth-child(4) {
+    left: 800px;
+    animation: resumeEffect4 3s ease 3s 2 ;
+}
+@keyframes resumeEffect1 {
+    0% {
+        left: -100px;
+        top: 80px;
+    }
+    50% {
+        left: -60px;
+        top: 30px;
+        transform: rotateX(180deg);
+    }
+    100% {
+        left: 200px;
+        top: 40px;
+    }
+}
+@keyframes resumeEffect2 {
+    0% {
+        left: -500px;
+        top: -20px;
+    }
+    50% {
+        left: 600px;
+        top: 150px;
+        transform: rotateY(240deg) scale(2,2);
+    }
+    100% {
+        left: 400px;
+        top: 40px;
+    }
+}
+@keyframes resumeEffect3 {
+    0% {
+        left: -100px;
+        top: 80px;
+    }
+    50% {
+        left: 1000px;
+        top: -30px;
+        transform: rotateX(180deg);
+    }
+    100% {
+        left: 600px;
+        top: 40px;
+    }
+}
+@keyframes resumeEffect4 {
+    0% {
+        left: 800px;
+        top: 80px;
+    }
+    50% {
+        left: 60px;
+        top: 120px;
+        transform: rotate(130deg,240deg);
+    }
+    100% {
+        left: 800px;
+        top: 40px;
+    }
+}
+
+
+.resume {
+    display: flex;
+    flex-direction: column;
+}
+.h_span {
+    margin-right: 15px;
+}
+.resume .myintroduction {
+    flex: 1;
+    padding-bottom: 50px;
+}
+
+.myintroduction caption {
+    text-align: left;
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 30px;
+
+}
+.myintroduction td {
+    height: 50px;
+    letter-spacing:3px;
+    padding-left: 40px;
+}
+
+.self-evalution {
+    flex: 1;
+    padding-bottom: 50px;
+}
+.self-evalution ol {
+    margin-left: 40px;
+    letter-spacing: 3px;
+}
+.self-evalution h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 12px 0;
+}
+
+.self-evalution b {
+    display: inline-block;
+    margin: 20px 25px;
+}
+.self-evalution h4,
+.self-evalution p {  
+    font-size: 20px;
+    text-align: center;
+    letter-spacing: 15px;
+    line-height: 30px;
+}
+.self-evalution h4 {
+    font-size: 26px;
+    margin-bottom: 30px;
+}
+
+.myskill {
+    flex: 1;
+   padding-bottom: 50px;
+}
+.myskill h2 {
+    font-weight: 600;
+    font-size: 18px;
+    margin-bottom: 12px;
+}
+.myskill ol {
+    letter-spacing: 3px;
+    margin-left: 40px;
+}
+.project-works {
+    flex: 1;
+}
+.project-works h2 {
+    font-size: 18px;
+    font-weight: 600;
+    margin: 12px 0; 
+
+}
+ .projects a {
+     display: inline-block;
+    margin: 30px 20px;
+    font-size: 18px;
+    text-decoration: none;
+    color: #d85c5c;
+    transition: all 0.8s ease;
+}
+.projects a:hover {
+    color: #ca111b;
+    font-size: 20px;
+    margin-left: 60px;
+}
+.projects a span {
+    font-size: 14px;
+    margin-left: 30px;
+    color: #8469e6
+}
+.projects p {
+    height: 80px;
+    text-align: center;
+    font-size: 14px;
+    letter-spacing: 5px;
+    color:#bd1010;
+    transition: all 0.5s ease-in ;
+
+
+}
+.projects p:hover {
+    font-size: 24px;
+    transform: rotateY(360deg);
+
+}
+
+.training-experience {
+    flex: 1;
+    padding-bottom: 50px;
+}
+.training-experience h2 {
+    font-size: 18px;
+    margin: 15px 0px;
+}
+.training-experience p,
+.work-experience p{
+    margin-bottom:20px; 
+}
+.trainning-time,
+.work-time {
+    font-size: 12px;
+}
+.trainning-company,
+.work-company {
+    font-size: 18px;
+}
+.trainning-intro,
+.work-intro {
+    font-size: 14px;
+    letter-spacing: 4px;
+    text-indent: 2em;
+    line-height: 20px;
+}
+.work-experience {
+    flex: 1;
+    height: 410px;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+.work-experience h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+}
+.work-experience .work-study {
+    margin-top: 15px;
+    text-indent: 2em;
+    font-size: 15px;
+    color: rgb(232, 43, 116);
+    line-height: 22px;
+    animation: mycolor 10s ease 3s;
+    letter-spacing: 5px;
+}
+@keyframes mycolor {
+    0%{color: rgb(207, 136, 55);font-size: 18px;}
+    30%{color: rgba(219, 53, 219, 0.6);}
+    /* 60%{color: rgba(137, 179, 70, 0.8);} */
+    /* 80%{color: rgba(45, 211, 109, 0.7);} */
+    100%{color: rgb(232, 43, 116);font-size: 22px;line-height: 30px;}
+}
